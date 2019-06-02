@@ -12,7 +12,7 @@
 
       <div class="row">
         <div class="col-12 display-box text-right">
-          <h2 class="">{{current || 0}}</h2>
+          <h2 class="">{{current || '0'}}</h2>
         </div>
       </div>
 
@@ -56,7 +56,22 @@
 </template>
 
 <script>
-
+export default {
+  data() {
+    return {
+      current: '100',
+    }
+  },
+  methods: {
+    clear() {
+      this.current = '';
+    },
+    sign() {
+      this.current = this.current.charAt(0) === '-' ?
+        this.current.slice(1) : `-${this.current}`;
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
