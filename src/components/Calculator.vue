@@ -23,25 +23,25 @@
         <button @click="divide" type="button" class="col-3">&#247;</button>
       </div>
       <div class="row second-row">
-        <button @click="append(7)" type="button" class="col-3">7</button>
-        <button @click="append(8)" type="button" class="col-3">8</button>
-        <button @click="append(9)" type="button" class="col-3">9</button>
+        <button @click="append('7')" type="button" class="col-3">7</button>
+        <button @click="append('8')" type="button" class="col-3">8</button>
+        <button @click="append('9')" type="button" class="col-3">9</button>
         <button @click="times" type="button" class="col-3">x</button>
       </div>
       <div class="row third-row">
-        <button @click="append(4)" type="button" class="col-3">4</button>
-        <button @click="append(5)" type="button" class="col-3">5</button>
-        <button @click="append(6)" type="button" class="col-3">6</button>
+        <button @click="append('4')" type="button" class="col-3">4</button>
+        <button @click="append('5')" type="button" class="col-3">5</button>
+        <button @click="append('6')" type="button" class="col-3">6</button>
         <button @click="minus" type="button" class="col-3">-</button>
       </div>
       <div class="row fourth-row">
-        <button @click="append(1)" type="button" class="col-3">1</button>
-        <button @click="append(2)" type="button" class="col-3">2</button>
-        <button @click="append(3)" type="button" class="col-3">3</button>
+        <button @click="append('1')" type="button" class="col-3">1</button>
+        <button @click="append('2')" type="button" class="col-3">2</button>
+        <button @click="append('3')" type="button" class="col-3">3</button>
         <button @click="add" type="button" class="col-3">+</button>
       </div>
       <div class="row sixth-row">
-        <button @click="append(0)" type="button" class="col-6">0</button>
+        <button @click="append('0')" type="button" class="col-6">0</button>
         <button @click="dot" type="button" class="col-3">.</button>
         <button @click="equal" type="button" class="col-3">=</button>
       </div>
@@ -59,12 +59,61 @@
 export default {
   data() {
     return {
-      current: '',
+      previous: null,
+      current: '200',
+      operator: null,
+      operatorClicked: false,
     }
   },
   methods: {
     clear() {
       this.current = '';
+    },
+    sign() {
+      //IF THE USER PRESSES +/- SYMBOL WHILE VALUE IS 0
+      if ((this.current === '') || (this.current === '0')) {
+        this.current = '';
+      } else {
+        this.current *= -1;
+      }
+    },
+    percent() {
+      this.current = `${parseFloat(this.current)/100}`;
+    },
+    append(number) {
+      //IF THE VALUE IS ALREADY 0 && THE USER IS ADDING ZEROES
+      if (this.current === '' && number === '0') {
+        this.current = '';
+      } else if(this.operatorClicked){
+        this.current='';
+        this.operatorClicked =false;
+      }
+      this.current = `${this.current}${number}`;
+
+    },
+    dot() {
+      if (this.current.indexOf('.') === -1) {
+        this.append('.');
+      }
+    },
+    setPrevious() {
+      this.previous = this.current;
+      this.operatorClicked = true;
+    },
+    divide() {
+      this.setPrevious();
+    },
+    times() {
+      this.setPrevious();
+    },
+    minus() {
+      this.setPrevious();
+    },
+    add() {
+      this.setPrevious();
+    },
+    equal() {
+      this.setPrevious();
     }
   }
 }
