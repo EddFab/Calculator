@@ -92,7 +92,6 @@ export default {
         this.operatorClicked = false;
       }
       this.current = `${this.current}${number}`;
-
     },
     dot() {
       if (this.current.indexOf('.') === -1) {
@@ -102,27 +101,31 @@ export default {
     setPrevious() {
       this.previous = this.current;
       this.operatorClicked = true;
-      this.current = this.signal;
+      //this.current = this.signal;
     },
     divide() {
         this.signal = '/';
         this.setPrevious();
         this.operator = (a, b) => b / a;
+        this.current = this.signal;
     },
     times() {
       this.signal = 'x';
       this.setPrevious();
       this.operator = (a, b) => b * a;
+      this.current = this.signal;
     },
     minus() {
       this.signal = '-';
       this.setPrevious();
       this.operator = (a, b) => b - a;
+      this.current = this.signal;
     },
     add() {
       this.signal = '+';
       this.setPrevious();
       this.operator = (a, b) => b + a;
+      this.current = this.signal;
     },
     equal() {
       this.current = `${this.operator(
