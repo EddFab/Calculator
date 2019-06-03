@@ -59,8 +59,9 @@
 export default {
   data() {
     return {
+      signal: null,
       previous: null,
-      current: '200',
+      current: '',
       operator: null,
       operatorClicked: false,
     }
@@ -82,11 +83,13 @@ export default {
     },
     append(number) {
       //IF THE VALUE IS ALREADY 0 && THE USER IS ADDING ZEROES
-      if (this.current === '' && number === '0') {
+      if (this.current == 0 || !this.current) {
         this.current = '';
-      } else if(this.operatorClicked){
-        this.current='';
-        this.operatorClicked =false;
+      }
+      //IF ANY OPERATOR BUTTON HAS BEEN CLICKED
+      else if (this.operatorClicked) {
+        this.current = '';
+        this.operatorClicked = false;
       }
       this.current = `${this.current}${number}`;
 
@@ -99,21 +102,34 @@ export default {
     setPrevious() {
       this.previous = this.current;
       this.operatorClicked = true;
+      this.current = this.signal;
     },
     divide() {
+      this.signal = '/';
       this.setPrevious();
+      this.operator = (a, b) => b / a;
     },
     times() {
+      this.signal = 'x';
       this.setPrevious();
+      this.operator = (a, b) => b * a;
     },
     minus() {
+      this.signal = '-';
       this.setPrevious();
+      this.operator = (a, b) => b - a;
     },
     add() {
+      this.signal = '+';
       this.setPrevious();
+      this.operator = (a, b) => b + a;
     },
     equal() {
-      this.setPrevious();
+      this.current = `${this.operator(
+        parseFloat(this.current),
+        parseFloat(this.previous)
+      )}`;
+      this.previous = null;
     }
   }
 }
@@ -124,6 +140,7 @@ export default {
 .display-box {
   background-color: #333;
   padding: 20px 10px;
+  height: 75px;
 }
 
 .h100 {
