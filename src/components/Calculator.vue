@@ -105,9 +105,9 @@ export default {
       this.current = this.signal;
     },
     divide() {
-      this.signal = '/';
-      this.setPrevious();
-      this.operator = (a, b) => b / a;
+        this.signal = '/';
+        this.setPrevious();
+        this.operator = (a, b) => b / a;
     },
     times() {
       this.signal = 'x';
