@@ -3,14 +3,14 @@
   <div class="row">
 
     <!--SPACER-->
-    <div class="col-5"></div>
+    <div class="col-1 col-sm-3 col-md-4 col-lg-5"></div>
 
     <!--MIDDLE DIV-->
-    <div class="col-2" style="margin-top:100px;">
+    <div class="col-10 col-sm-6 col-md-4 col-lg-2" style="margin-top:100px;">
 
-      <h1>Calculator</h1>
 
       <div class="row">
+        <h1 class="col-12 text-center p-0 m-0 mb-3">CALCULATOR</h1>
         <div class="col-12 display-box text-right">
           <h2 class="">{{current || '0'}}</h2>
         </div>
@@ -49,7 +49,7 @@
     </div>
 
     <!--SPACER-->
-    <div class="col-5"></div>
+    <div class="col-1 col-sm-3 col-md-4 col-lg-5"></div>
 
   </div>
 </div>
@@ -148,8 +148,9 @@ export default {
 }
 
 h1 {
-  font-family: 'Cabin Sketch', cursive;
+  font-family: 'Faster One', cursive;
   color: #333;
+  font-size: 2em;
 }
 
 h2 {
