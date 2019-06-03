@@ -59,16 +59,12 @@
 export default {
   data() {
     return {
-      current: '100',
+      current: '',
     }
   },
   methods: {
     clear() {
       this.current = '';
-    },
-    sign() {
-      this.current = this.current.charAt(0) === '-' ?
-        this.current.slice(1) : `-${this.current}`;
     }
   }
 }
