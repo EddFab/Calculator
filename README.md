@@ -3,6 +3,6 @@
 
 Built w/
 
-Vue Js
+1. Vue Js
 
-Twitter Bootstrap
+2. Twitter Bootstrap
